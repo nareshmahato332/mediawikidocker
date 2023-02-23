@@ -6,7 +6,7 @@ data:
   initdb.sql: |
     CREATE USER 'wiki'@'%' IDENTIFIED BY 'THISpasswordSHOULDbeCHANGED';
     CREATE DATABASE my_wiki;
-    GRANT ALL PRIVILEGES ON wikidatabase.* TO 'wiki'@'%';
+    GRANT ALL PRIVILEGES ON my_wiki.* TO 'wiki'@'%';
     FLUSH PRIVILEGES;          
 ---
 apiVersion: v1
