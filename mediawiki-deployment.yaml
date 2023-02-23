@@ -20,7 +20,8 @@ spec:
         run: wiki-mysql
     spec:
       containers:
-      - image: dockerimage:buildno
+      - image: container_registry_url/<name>:buildno
+        # eg: - image:masterdockerimages.azurecr.io/nginx:azure
         securityContext:
           privileged: true
         imagePullPolicy: Always
