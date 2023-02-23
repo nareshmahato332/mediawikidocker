@@ -4,10 +4,12 @@ node {
             def application = 'mediawiki'
             def environment = 'demo'
             def kubernetes_namespace = 'demo'
-            def branchname = 'main'			
-            stage('Clone repository') {
-				        git([url: 'https://github.com/nareshmahato332/mediawiki.git', branch: "${branchname}", credentialsId: 'github_cred'])
-		      	}            
+            def branchname = 'main'
+            
+	    stage('Clone repository') {
+                    git([url: 'https://github.com/nareshmahato332/mediawiki.git', branch: "${branchname}", credentialsId: 'github_cred'])
+		    }
+	    
             stage('wikidownload') {
                 sh ''' 
                    wget https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.39.1.tar.gz
@@ -28,6 +30,8 @@ node {
              stage('Deploy') {)
                  sh '''
 		 echo 'Deploy Stage Started !!'
+		 
+		 kubectl config use-context <CONTEXT_NAME> ## k8s cluster context name where we want to deploy the application
 		 
 	         sed -i 's/buildno/$BUILD_NUMBER/g' mediawiki-deployment.yaml'"
                  kubectl apply -f mysql-pv-pvc.yaml -n <namespace>
