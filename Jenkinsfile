@@ -29,7 +29,7 @@ node {
                  sh '''
 		 echo 'Deploy Stage Started !!'
 		 
-	         sed -i \"s/buildno/${env.BUILD_NUMBER}/g\" mediawiki-deployment.yaml'"
+	         sed -i 's/buildno/$BUILD_NUMBER/g' mediawiki-deployment.yaml'"
                  kubectl apply -f mysql-pv-pvc.yaml -n <namespace>
 		 kubectl apply -f mysql-deployment.yaml -n <namespace>
 		 kubectl apply -f mediawiki-deployment.yaml -n <namespace>
