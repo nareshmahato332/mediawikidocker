@@ -20,7 +20,7 @@ spec:
         run: wiki-mysql
     spec:
       containers:
-      - image: dockerimage:tag
+      - image: dockerimage:buildno
         securityContext:
           privileged: true
         imagePullPolicy: Always
